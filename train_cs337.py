@@ -145,7 +145,19 @@ def main(args):
     logger.log("Student {}:".format(args.model_name) )
     model_name = args.model_name
 
-    
+
+    # STUDENT2
+    base_model2 = get_model_from_name( model_config, args.model_name )
+    logger.log("Student {}:".format(args.model_name) )
+    model_name2 = args.model_name
+
+    # STUDENT3
+    base_model3 = get_model_from_name( model_config, args.model_name )
+    logger.log("Student {}:".format(args.model_name) )
+    model_name3 = args.model_name
+
+
+
     
     # ce_ptrained_path = "./pretrained/disk-CE-cifar100-ResNet10_s-model_best.pth.tar"
     ce_ptrained_path = "../models/ce_results_tinyImagenet/CE_with_seed-{}_cycles-1-_{}_{}-{}_"\
