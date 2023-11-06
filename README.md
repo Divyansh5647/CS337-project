@@ -15,14 +15,4 @@ We intend to use a student-teacher setup to distill a large teacher network into
 
 We want to experiment with the effect of disagreement learning on this and see if the resulting ensemble can help improve the results
 
-
-
-
-
-
-
-
-
-
-
-
+We will try to use ensemble learning techniques along with knowledge distillation to see if there are any possible improvements
