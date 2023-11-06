@@ -1,5 +1,5 @@
 
-# CS 335 Project - 
+# CS 337 Project - 
 
 ## Participants - 
 
@@ -28,3 +28,6 @@ Model link - https://drive.google.com/drive/u/0/folders/1B0lXfVqHQWUCHe9Nnbo9ePD
 
 
 
+=======
+We will try to use ensemble learning techniques along with knowledge distillation to see if there are any possible improvements
+>>>>>>> d56b6a6b2ea10dac87bccab9d33c95ccec9fc608
