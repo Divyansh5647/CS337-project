@@ -16,4 +16,4 @@ We intend to use a student-teacher setup to distill a large teacher network into
 We want to experiment with the effect of disagreement learning on this and see if the resulting ensemble can help improve the results
 
 Model link - https://drive.google.com/drive/u/0/folders/1B0lXfVqHQWUCHe9Nnbo9ePDUQUWJUKyC
-TinyImageNet link - wget http://cs231n.stanford.edu/tiny-imagenet-200.zip
+TinyImageNet link - http://cs231n.stanford.edu/tiny-imagenet-200.zip
