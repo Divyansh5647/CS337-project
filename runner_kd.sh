@@ -2,10 +2,10 @@ GPU='2'
 
 #dataset='cifar100'
 #data_path='./cifar/'
-save_dir='./kd_results/'
+save_dir='../kd_results/'
 
 dataset="tiny-imagenet-200"
-data_path="./tiny-imagenet-200/"
+data_path="../data/tiny-imagenet-200/"
 
 batch_size=400
 eval_batch_size=400
@@ -37,8 +37,8 @@ momentum=0.9
 #base_name="ResNet10_xs"
 
 # 4M MACs, 52.16%
-base_name="ResNet10_m"
-teacher_name='ResNet34'
+base_name="ResNet10_xxxs"
+teacher_name='ResNet10'
 # 16M MACs, 65.24%
 #base_name='ResNet10_m'
 
@@ -49,7 +49,7 @@ CUDA_VISIBLE_DEVICES="4"  python3 train_kd.py --dataset $dataset --data_path $da
 	--eval_batch_size $eval_batch_size --batch_size $batch_size  \
 	--lr $lr --momentum $momentum \
 	--loss_kd_frac 0.5 --pretrained_student True \
-	--temperature 2 --epochs 200 --wd $wd --rand_seed 1
+	--temperature 2 --epochs 200 --wd $wd --rand_seed 42
 
 
 

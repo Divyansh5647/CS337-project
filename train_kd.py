@@ -135,22 +135,23 @@ def main(args):
     logger.log("Train:{}\t, Valid:{}\t, Test:{}\n".format(len(train_data),
                                                           len(valid_data),
                                                           len(test_data)))
-    Arguments = namedtuple("Configure", ('class_num','dataset')  )
-    md_dict = { 'class_num' : class_num, 'dataset' : args.dataset }
+    Arguments = namedtuple("Configure", ('class_num','dataset','dropout')  )
+    md_dict = { 'class_num' : class_num, 'dataset' : args.dataset,'dropout':0 }
     model_config = Arguments(**md_dict)
 
 
     # STUDENT
     base_model = get_model_from_name( model_config, args.model_name )
-    logger.log("Student {} + {}:".format(i, args.model_name) )
+    logger.log("Student {}:".format(args.model_name) )
     model_name = args.model_name
 
     
     
     # ce_ptrained_path = "./pretrained/disk-CE-cifar100-ResNet10_s-model_best.pth.tar"
-    ce_ptrained_path = "./ce_results/CE_with_seed-{}_cycles-1_{}-{}"\
+    ce_ptrained_path = "../models/ce_results_tinyImagenet/CE_with_seed-{}_cycles-1-_{}_{}-{}_"\
                         "model_best.pth.tar".format(args.rand_seed,
                                                     #args.sched_cycles,
+                                                    args.model_name,
                                                     args.dataset,
                                                     args.model_name)
     logger.log("using pretrained student model from {}".format(ce_ptrained_path))
@@ -158,7 +159,7 @@ def main(args):
     if args.pretrained_student: # load CE-pretrained student
         assert Path().exists(), "Cannot find the initialization file : {:}".format(ce_ptrained_path)
         base_checkpoint = torch.load(ce_ptrained_path)
-        base_model[i].load_state_dict(base_checkpoint["base_state_dict"])
+        base_model.load_state_dict(base_checkpoint["base_state_dict"])
     
     
     base_model = base_model.cuda()
@@ -181,7 +182,7 @@ def main(args):
     
     
     
-    optimizer_s = torch.optim.SGD(base_model[i].parameters(), args.lr, momentum=args.momentum, weight_decay=args.wd)
+    optimizer_s = torch.optim.SGD(base_model.parameters(), args.lr, momentum=args.momentum, weight_decay=args.wd)
     scheduler_s = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer_s, args.epochs//args.sched_cycles)
     logger.log("Scheduling LR update to student no {}, {} time at {}-epoch intervals".format(k,args.sched_cycles, 
                                                                                         args.epochs//args.sched_cycles))
@@ -190,8 +191,9 @@ def main(args):
     Teacher_model = get_model_from_name( model_config, args.teacher )
     # PATH="/home/shashank/disk/model_10l/disk-CE-cifar100-ResNet10_l-model_best.pth.tar"
     #/home/anmolreddy/pretrained/teacher_seed-1_cifar100-ResNet10_lmodel_best.pth.tar
-    teach_PATH = "./ce_results/CE_with_seed-{}_cycles-1_{}-{}"\
+    teach_PATH = "../models/ce_results_tinyImagenet/CE_with_seed-{}_cycles-1-_{}_{}-{}_"\
                     "model_best.pth.tar".format(args.rand_seed,
+                                                args.teacher,
                                                 args.dataset,
                                                 args.teacher)
     teach_checkpoint = torch.load(teach_PATH)
@@ -251,20 +253,18 @@ def main(args):
 
             
             
-            for i in range(k):
-                features, logits, _ = network(inputs)
+            features, logits, _ = network(inputs)
             with torch.no_grad():
                 _,teacher_logits , _ = network_t(inputs)
 
             T=args.temperature
 
-            for i in range(k):
-                log_student = F.log_softmax(logits / T, dim=1)
+            log_student = F.log_softmax(logits / T, dim=1)
                 
             sof_teacher = F.softmax(teacher_logits / T, dim=1)
             
             alpha = args.loss_kd_frac
-            optimizer_s[i].zero_grad()
+            optimizer_s.zero_grad()
             loss_kd = nn.KLDivLoss(reduction = "batchmean")(log_student, sof_teacher) * T * T
             loss_ce =  F.cross_entropy(logits, targets)
             loss = loss_ce
@@ -288,9 +288,9 @@ def main(args):
         val_loss, val_acc1, val_acc5 = cifar_100_train_eval_loop( args, logger, epoch, optimizer_s, scheduler_s, network, valid_loader, criterion, args.eval_batch_size, mode='eval' )
         is_best = False 
         if val_acc1 > best_acc:
-            best_acc[i] = val_acc1
+            best_acc = val_acc1
             is_best = True
-            best_state_dict[i] = copy.deepcopy( network.state_dict() )
+            best_state_dict = copy.deepcopy( network.state_dict() )
             best_epoch = epoch+1
         save_checkpoint({
                     'epoch': epoch + 1,
@@ -300,7 +300,7 @@ def main(args):
                     'optimizer_s' : optimizer_s.state_dict(),
                 }, is_best, prefix=log_file_name)
             #val_losses.append(val_loss)
-        logger.log('std {} Valid eval after epoch: loss:{:.4f}\tlatest_acc:{:.2f}\tLR:{:.4f} -- best valacc {:.2f}'.format( i,val_loss,
+        logger.log('std: Valid eval after epoch: loss:{:.4f}\tlatest_acc:{:.2f}\tLR:{:.4f} -- best valacc {:.2f}'.format( val_loss,
                                                                                                                             val_acc1,
                                                                                                                             get_mlr(scheduler_s), 
                                                                                                                             best_acc))
