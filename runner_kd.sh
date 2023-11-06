@@ -49,7 +49,7 @@ CUDA_VISIBLE_DEVICES="4"  python3 train_kd.py --dataset $dataset --data_path $da
 	--eval_batch_size $eval_batch_size --batch_size $batch_size  \
 	--lr $lr --momentum $momentum \
 	--loss_kd_frac 0.5 --pretrained_student True \
-	--temperature 2 --epochs 200 --wd $wd --rand_seed 42
+	--temperature 2 --epochs 200 --wd $wd --rand_seed1 42 --rand_seed2 0 --rand_seed3 123
 
 
 

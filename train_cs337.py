@@ -80,7 +80,8 @@ def cifar_100_train_eval_loop( args, logger, epoch, optimizer, scheduler, networ
     return losses.avg, top1.avg, top5.avg
 
 def main(args):
-    k=args.k
+    rand_seeds = [args.rand_seed1, args.rand_seed2, args.rand_seed3]
+    k=len(rand_seeds)
     assert torch.cuda.is_available(), "CUDA is not available."
     torch.backends.cudnn.enabled = True
     torch.backends.cudnn.benchmark = True
@@ -141,82 +142,60 @@ def main(args):
 
 
     # STUDENT
-    base_model = get_model_from_name( model_config, args.model_name )
-    logger.log("Student {}:".format(args.model_name) )
-    model_name = args.model_name
-
-
-    # STUDENT2
-    base_model2 = get_model_from_name( model_config, args.model_name )
-    logger.log("Student {}:".format(args.model_name) )
-    model_name2 = args.model_name
-
-    # STUDENT3
-    base_model3 = get_model_from_name( model_config, args.model_name )
-    logger.log("Student {}:".format(args.model_name) )
-    model_name3 = args.model_name
+    base_model = [i for i in range(k)]
+    for i in range(k):
+        base_model[i] = get_model_from_name( model_config, args.model_name )
+        logger.log("Student {}:".format(args.model_name) )
+        model_name = args.model_name
 
     # ce_ptrained_path = "./pretrained/disk-CE-cifar100-ResNet10_s-model_best.pth.tar"
-    ce_ptrained_path = "../models/ce_results_tinyImagenet/CE_with_seed-{}_cycles-1-_{}_{}-{}_"\
-                        "model_best.pth.tar".format(args.rand_seed1,
-                                                    #args.sched_cycles,
-                                                    args.model_name,
-                                                    args.dataset,
-                                                    args.model_name)
+    ce_pretrained_path = [i for i in range(k)]
+    for i in range(k):
+        ce_ptrained_path = "../models/ce_results_tinyImagenet/CE_with_seed-{}_cycles-1-_{}_{}-{}_"\
+                            "model_best.pth.tar".format(args.rand_seed[i],
+                                                        #args.sched_cycles,
+                                                        args.model_name,
+                                                        args.dataset,
+                                                        args.model_name)
 
-
-
-    ce_ptrained_path2 = "../models/ce_results_tinyImagenet/CE_with_seed-{}_cycles-1-_{}_{}-{}_"\
-                        "model_best.pth.tar".format(args.rand_seed2,
-                                                    #args.sched_cycles,
-                                                    args.model_name,
-                                                    args.dataset,
-                                                    args.model_name)
-
-
-    ce_ptrained_path3 = "../models/ce_results_tinyImagenet/CE_with_seed-{}_cycles-1-_{}_{}-{}_"\
-                        "model_best.pth.tar".format(args.rand_seed3,
-                                                    #args.sched_cycles,
-                                                    args.model_name,
-                                                    args.dataset,
-                                                    args.model_name)
 
     logger.log("using pretrained student model from {}".format(ce_ptrained_path))
-    logger.log("using pretrained student model from {}".format(ce_ptrained_path2))
-    logger.log("using pretrained student model from {}".format(ce_ptrained_path3))
 
-
-
-
-    if args.pretrained_student: # load CE-pretrained student
-        assert Path().exists(), "Cannot find the initialization file : {:}".format(ce_ptrained_path)
-        base_checkpoint = torch.load(ce_ptrained_path)
-        base_model.load_state_dict(base_checkpoint["base_state_dict"])
-    
-    
-    base_model = base_model.cuda()
-    network = base_model 
-    best_state_dict = copy.deepcopy( base_model.state_dict() )
+    network = [i for i in range(k)]
+    best_state_dict = [i for i in range(k)]
+    base_model = [i for i in range(k)]
+    for i in range(k):
+        if args.pretrained_student: # load CE-pretrained student
+            assert Path().exists(), "Cannot find the initialization file : {:}".format(ce_ptrained_path)
+            base_checkpoint = torch.load(ce_ptrained_path)
+            base_model[i].load_state_dict(base_checkpoint["base_state_dict"])
+        
+        
+        base_model[i] = base_model[i].cuda()
+        network[i] = base_model[i] 
+        best_state_dict[i] = copy.deepcopy( base_model.state_dict() )
     #testing pretrained student
     
-    test_loss, test_acc1, test_acc5 = evaluate_model( network, test_loader, criterion, args.eval_batch_size )
-    logger.log(
-        "***{:s}*** before training [Student(CE)]  Test loss = {:.6f}, accuracy@1 = {:.2f}, accuracy@5 = {:.2f}, error@1 = {:.2f}, error@5 = {:.2f}".format(
-            time_string(),
-            test_loss,
-            test_acc1,
-            test_acc5,
-            100 - test_acc1,
-            100 - test_acc5,
-        )
-        )
-    # set student training up
+    for i in range(k):
+        test_loss, test_acc1, test_acc5 = evaluate_model( network[i], test_loader, criterion, args.eval_batch_size )
+        logger.log(
+            "***{:s}*** before training [Student(CE)]  Test loss = {:.6f}, accuracy@1 = {:.2f}, accuracy@5 = {:.2f}, error@1 = {:.2f}, error@5 = {:.2f}".format(
+                time_string(),
+                test_loss,
+                test_acc1,
+                test_acc5,
+                100 - test_acc1,
+                100 - test_acc5,
+            )
+            )
+        # set student training up
     
-    
-    
-    optimizer_s = torch.optim.SGD(base_model.parameters(), args.lr, momentum=args.momentum, weight_decay=args.wd)
-    scheduler_s = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer_s, args.epochs//args.sched_cycles)
-    logger.log("Scheduling LR update to student no {}, {} time at {}-epoch intervals".format(k,args.sched_cycles, 
+    optimizer_s = [i for i in range(k)]
+    scheduler_s = [i for i in range(k)]
+    for i in range(k):
+        optimizer_s[i] = torch.optim.SGD(base_model[i].parameters(), args.lr, momentum=args.momentum, weight_decay=args.wd)
+        scheduler_s[i] = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer_s[i], args.epochs//args.sched_cycles)
+        logger.log("Scheduling LR update to student no {}, {} time at {}-epoch intervals".format(k,args.sched_cycles, 
                                                                                         args.epochs//args.sched_cycles))
 
     # TEACHER
@@ -262,83 +241,120 @@ def main(args):
     best_acc, best_epoch = 0.0, 0
     log_file_name = get_model_prefix( args )
 
-    
-    for epoch in range(args.epochs):
-        mode='train'
-        logger.log("\nStarted EPOCH:{}".format(epoch))
+    for m_idx in range(0, 3):
+        m = network[m_idx]
+        for m_ in network[:m_idx]:
+            m_.eval()
+        for epoch in range(args.epochs):
+            mode='train'
+            logger.log("\nStarted EPOCH:{}".format(epoch))
 
-        losses =  AverageMeter('Loss', ':.4e') 
-        top1 =  AverageMeter('Acc@1', ':6.2f') 
-        top5 =  AverageMeter('Acc@5', ':6.2f')
-
-        
-        base_model.train()
-        progress = ProgressMeter(
-                    logger,
-                    len(train_loader),
-                    [losses, top1, top5],
-                    prefix="[{}] E: [{}]".format(mode.upper(), epoch))
-            
-        for iteration, (inputs, targets) in enumerate(train_loader):
-            inputs = inputs.cuda()
-            targets = targets.cuda(non_blocking=True)
+            losses =  AverageMeter('Loss', ':.4e') 
+            top1 =  AverageMeter('Acc@1', ':6.2f') 
+            top5 =  AverageMeter('Acc@5', ':6.2f')
 
             
-            
-            features, logits, _ = network(inputs)
-            with torch.no_grad():
-                _,teacher_logits , _ = network_t(inputs)
-
-            T=args.temperature
-
-            log_student = F.log_softmax(logits / T, dim=1)
+            base_model[m_idx].train()
+            progress = ProgressMeter(
+                        logger,
+                        len(train_loader),
+                        [losses, top1, top5],
+                        prefix="[{}] E: [{}]".format(mode.upper(), epoch))
                 
-            sof_teacher = F.softmax(teacher_logits / T, dim=1)
-            
-            alpha = args.loss_kd_frac
-            optimizer_s.zero_grad()
-            loss_kd = nn.KLDivLoss(reduction = "batchmean")(log_student, sof_teacher) * T * T
-            loss_ce =  F.cross_entropy(logits, targets)
-            loss = loss_ce
-            if alpha>1e-3:
-                loss = (1-alpha)*loss_ce + alpha*loss_kd
-            prec1, prec5 = obtain_accuracy(logits.data, targets.data, topk=(1, 5))
+            for iteration, (inputs, targets) in enumerate(train_loader):
+                inputs = inputs.cuda()
+                targets = targets.cuda(non_blocking=True)
 
-            loss.backward()
-            optimizer_s.step()
+                features, logits, _ = network(inputs)
+                with torch.no_grad():
+                    _,teacher_logits , _ = network_t(inputs)
 
-            losses.update(loss.item(), inputs.size(0))
-            top1.update(prec1.item(), inputs.size(0))
-            top5.update(prec5.item(), inputs.size(0))
+                T=args.temperature
+
+                log_student = F.log_softmax(logits / T, dim=1)
+                    
+                sof_teacher = F.softmax(teacher_logits / T, dim=1)
+                
+                alpha = args.loss_kd_frac
+                optimizer_s.zero_grad()
+                loss_kd = nn.KLDivLoss(reduction = "batchmean")(log_student, sof_teacher) * T * T
+                loss_ce =  F.cross_entropy(logits, targets)
+                loss = loss_ce
+
+                ## DBAT Loss ##
+                if m_idx != 0:                        
+                    p_1_s, indices = [], []
+                    # print(ensemble)
+                    with torch.no_grad():
+                        for m_ in network[:m_idx]:
+                            # print("hello")
+                            # print(m_(inputs,lengths).shape)
+                            p_1 = torch.softmax(m_(inputs), dim=-1)
+                            p_1, idx = p_1.max(dim=-1)
+                            p_1_s.append(p_1)
+                            indices.append(idx)
+                    # print(p_1_s[0].shape)
+                    
+                    p_2 = torch.softmax(m(inputs), dim=-1)
+                    # print(p_2.shape)
+                    # print(indices[0].shape)
+                    p_2 = torch.reshape(p_2, (-1,p_2.shape[-1]))
+                    p_2_s = [p_2[torch.arange(torch.ravel(max_idx).shape[0]), torch.ravel(max_idx)] for max_idx in indices]
+                    # print("P 2 s shape", p_2_s[0].shape)
+                    # Flattening the confidence probabilities of all models
+                    for i in range(len(p_1_s)):
+                        p_1_s[i] = torch.ravel(p_1_s[i])
+                        # print("p 1 s shape", p_1_s[i].shape)
+                    
+                    for i in range(len(p_1_s)):
+                        al = (- torch.log(p_1_s[i] * (1-p_2_s[i]) + p_2_s[i] * (1-p_1_s[i]) +  1e-7)).mean()
+                        adv_loss.append(al)
+
+                    adv_loss = sum(adv_loss)/len(adv_loss)
+                # Adv loss calculation complete
+                if adv_loss == []:
+                    adv_loss = 0
+
+                if alpha>1e-3:
+                    loss = (1-alpha)*loss_ce + alpha*loss_kd + 0.1*adv_loss
+                prec1, prec5 = obtain_accuracy(logits.data, targets.data, topk=(1, 5))
+
+                loss.backward()
+                optimizer_s[i].step()
+
+                losses.update(loss.item(), inputs.size(0))
+                top1.update(prec1.item(), inputs.size(0))
+                top5.update(prec5.item(), inputs.size(0))
+                
+                if (iteration % args.print_freq == 0) or (iteration == len(train_loader)-1):
+                    progress.display(iteration)
             
-            if (iteration % args.print_freq == 0) or (iteration == len(train_loader)-1):
-                progress.display(iteration)
+            
+            scheduler_s[i].step(epoch)
+            
+            val_loss, val_acc1, val_acc5 = cifar_100_train_eval_loop( args, logger, epoch, optimizer_s[i], scheduler_s[i], network[i], valid_loader, criterion, args.eval_batch_size, mode='eval' )
+            is_best = False 
+            if val_acc1 > best_acc:
+                best_acc = val_acc1
+                is_best = True
+                best_state_dict = copy.deepcopy( network[i].state_dict() )
+                best_epoch = epoch+1
+            save_checkpoint({
+                        'epoch': epoch + 1,
+                        'base_state_dict': base_model[i].state_dict(),
+                        'best_acc': best_acc,
+                        'scheduler_s' : scheduler_s[i].state_dict(),
+                        'optimizer_s' : optimizer_s[i].state_dict(),
+                    }, is_best, prefix=log_file_name)
+                #val_losses.append(val_loss)
+            logger.log('std: Valid eval after epoch: loss:{:.4f}\tlatest_acc:{:.2f}\tLR:{:.4f} -- best valacc {:.2f}'.format( val_loss,
+                                                                                                                                val_acc1,
+                                                                                                                                get_mlr(scheduler_s), 
+                                                                                                                                best_acc))
         
-        
-        scheduler_s.step(epoch)
-        
-        val_loss, val_acc1, val_acc5 = cifar_100_train_eval_loop( args, logger, epoch, optimizer_s, scheduler_s, network, valid_loader, criterion, args.eval_batch_size, mode='eval' )
-        is_best = False 
-        if val_acc1 > best_acc:
-            best_acc = val_acc1
-            is_best = True
-            best_state_dict = copy.deepcopy( network.state_dict() )
-            best_epoch = epoch+1
-        save_checkpoint({
-                    'epoch': epoch + 1,
-                    'base_state_dict': base_model.state_dict(),
-                    'best_acc': best_acc,
-                    'scheduler_s' : scheduler_s.state_dict(),
-                    'optimizer_s' : optimizer_s.state_dict(),
-                }, is_best, prefix=log_file_name)
-            #val_losses.append(val_loss)
-        logger.log('std: Valid eval after epoch: loss:{:.4f}\tlatest_acc:{:.2f}\tLR:{:.4f} -- best valacc {:.2f}'.format( val_loss,
-                                                                                                                            val_acc1,
-                                                                                                                            get_mlr(scheduler_s), 
-                                                                                                                            best_acc))
-    
-        network.load_state_dict( best_state_dict )
-    test_loss, test_acc1, test_acc5 = evaluate_model( network, test_loader, criterion, args.eval_batch_size )
+            network[i].load_state_dict( best_state_dict )
+
+    test_loss, test_acc1, test_acc5 = evaluate_model( network[i], test_loader, criterion, args.eval_batch_size )
     logger.log(
             "\n***{:s}*** [Post-train] [Student {}] Test loss = {:.6f}, accuracy@1 = {:.2f}, accuracy@5 = {:.2f}, error@1 = {:.2f}, error@5 = {:.2f}".format(
                 time_string(),i,
@@ -369,6 +385,8 @@ if __name__ == "__main__":
     parser.add_argument("--save_dir", type=str, help="Folder to save checkpoints and log.", default='./kd_results/')
     parser.add_argument("--workers", type=int, default=8, help="number of data loading workers (default: 8)")
     parser.add_argument("--rand_seed1", type=int, help="base model seed")
+    parser.add_argument("--rand_seed2", type=int, help="base model seed")
+    parser.add_argument("--rand_seed3", type=int, help="base model seed")
     parser.add_argument("--global_rand_seed", type=int, default=-1, help="global model seed")
     #add_shared_args(parser)
     parser.add_argument("--batch_size", type=int, default=200, help="Batch size for training.")
