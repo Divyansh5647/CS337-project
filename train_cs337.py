@@ -156,18 +156,38 @@ def main(args):
     logger.log("Student {}:".format(args.model_name) )
     model_name3 = args.model_name
 
-
-
-    
     # ce_ptrained_path = "./pretrained/disk-CE-cifar100-ResNet10_s-model_best.pth.tar"
     ce_ptrained_path = "../models/ce_results_tinyImagenet/CE_with_seed-{}_cycles-1-_{}_{}-{}_"\
-                        "model_best.pth.tar".format(args.rand_seed,
+                        "model_best.pth.tar".format(args.rand_seed1,
                                                     #args.sched_cycles,
                                                     args.model_name,
                                                     args.dataset,
                                                     args.model_name)
+
+
+
+    ce_ptrained_path2 = "../models/ce_results_tinyImagenet/CE_with_seed-{}_cycles-1-_{}_{}-{}_"\
+                        "model_best.pth.tar".format(args.rand_seed2,
+                                                    #args.sched_cycles,
+                                                    args.model_name,
+                                                    args.dataset,
+                                                    args.model_name)
+
+
+    ce_ptrained_path3 = "../models/ce_results_tinyImagenet/CE_with_seed-{}_cycles-1-_{}_{}-{}_"\
+                        "model_best.pth.tar".format(args.rand_seed3,
+                                                    #args.sched_cycles,
+                                                    args.model_name,
+                                                    args.dataset,
+                                                    args.model_name)
+
     logger.log("using pretrained student model from {}".format(ce_ptrained_path))
-                       
+    logger.log("using pretrained student model from {}".format(ce_ptrained_path2))
+    logger.log("using pretrained student model from {}".format(ce_ptrained_path3))
+
+
+
+
     if args.pretrained_student: # load CE-pretrained student
         assert Path().exists(), "Cannot find the initialization file : {:}".format(ce_ptrained_path)
         base_checkpoint = torch.load(ce_ptrained_path)
@@ -348,7 +368,7 @@ if __name__ == "__main__":
     parser.add_argument("--print_freq_eval", type=int, default=100, help="print frequency (default: 200)")
     parser.add_argument("--save_dir", type=str, help="Folder to save checkpoints and log.", default='./kd_results/')
     parser.add_argument("--workers", type=int, default=8, help="number of data loading workers (default: 8)")
-    parser.add_argument("--rand_seed", type=int, help="base model seed")
+    parser.add_argument("--rand_seed1", type=int, help="base model seed")
     parser.add_argument("--global_rand_seed", type=int, default=-1, help="global model seed")
     #add_shared_args(parser)
     parser.add_argument("--batch_size", type=int, default=200, help="Batch size for training.")
