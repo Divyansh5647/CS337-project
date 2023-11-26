@@ -1,0 +1,28 @@
+
+
+For task 1:
+
+Nemi and Tambat
+
+
+For task 2:
+
+Need to make plots of how accuracy changes with classes in dbat and non-dbat
+
+
+For task 3:
+
+Need to make data for how accuracy changes with ensemble size in dbat and non-dbat
+
+for task 4:
+
+Need to get data for office home in both cases(ood and not ood) and make plots
+
+
+Need to get data for waterbird with different numbers of ensembles and their error bars
+
+
+Presentation:
+
+
+
