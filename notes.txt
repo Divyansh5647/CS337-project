@@ -16,7 +16,7 @@ Need to make data for how accuracy changes with ensemble size in dbat and non-db
 
 for task 4:
 
-Need to get data for office home in both cases(ood and not ood) and make plots
+Need to make plots
 
 
 Need to get data for waterbird with different numbers of ensembles and their error bars
