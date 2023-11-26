@@ -29,8 +29,11 @@ For 3 - Added script test_num_classes.ipynb
 
 
 
+
 ## References
 
 [Docs](https://docs.google.com/document/d/1haGnOLEIGB9FBDRNcDlD97-WADgQ26CzZdLJveqQoCI/edit)
 [Agree-to-Disagree](https://openreview.net/pdf?id=K7CbYQbyYhY)
 [Model](https://drive.google.com/file/d/18t0W_N0MLVU26jibg0eeOXUPKD1TaP7A/view)
+
+[slides](https://docs.google.com/presentation/d/1Me-VbeTc64zNqFGPmz2Rw9wZ82AhXt5pix_1RYk4w5c/edit#slide=id.p)
