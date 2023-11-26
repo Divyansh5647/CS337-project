@@ -7,22 +7,21 @@ Nemi and Tambat
 
 For task 2:
 
-Need to make plots of how accuracy changes with classes in dbat and non-dbat
-
+Done
 
 For task 3:
 
-Need to make data for how accuracy changes with ensemble size in dbat and non-dbat
+To use waterbird dataset to demonstrate how accuracies change with ensembling.
 
 for task 4:
 
-Need to make plots
-
+Done for Office-home
 
 Need to get data for waterbird with different numbers of ensembles and their error bars
 
 
 Presentation:
 
+To Do
 
 
