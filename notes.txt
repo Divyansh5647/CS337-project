@@ -7,17 +7,21 @@ Nemi and Tambat
 
 For task 2:
 
-Done
+Done with cifar
 
 For task 3:
 
-To use waterbird dataset to demonstrate how accuracies change with ensembling.
+Done with waterbird dataset - no error bars yet
+
+Done with cifar
 
 for task 4:
 
 Done for Office-home
 
 Need to get data for waterbird with different numbers of ensembles and their error bars
+
+Otherwise can just show for waterbird? Already have its ensemble plots
 
 
 Presentation:

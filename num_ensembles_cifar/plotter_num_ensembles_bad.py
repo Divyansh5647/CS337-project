@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-fname = 'home_office'
+fname = 'num_ensembles'
 f = open(f'{fname}.txt','r')
-data = f.read().split('\n')[9:]
+data = f.read().split('\n')
 
 
 with_dbat = []
@@ -19,29 +19,34 @@ t1 = 1
 t2 = 0
 marked = 0
 
+# print(data)
 for row in data:
     
+    print(row)
     if(row[0:2]=='[m'):
         if(int(row[2])!=t2+1):
             t2=(t2+1)%5
             if(t1==1):
                 without_dbat.append(my_r)
-                # print(t1,t2,my_r)
-                my_r = [float(row[-6:])]
+                print(without_dbat)
+                print(t1,t2,float(row[-20:].split('[')[0][-5:-1]))
+                my_r = [float(row[-20:].split('[')[0][-5:-1])]
                 without_epochs.append(epoch_row)
-                epoch_row = [int(row[5:10].split(':')[0])]
+                epoch_row = [int(row[5:10].split('/')[0])]
             else:
                 with_dbat.append(my_r)
-                # print(t1,t2,my_r)
-                my_r = [float(row[-6:])]
+                print(t1,t2,float(row[-20:].split('[')[0][-5:-1]))
+                my_r = [float(row[-20:].split('[')[0][-5:-1])]
                 marked = 0
                 with_epochs.append(epoch_row)
-                epoch_row = [int(row[5:10].split(':')[0])]
+                epoch_row = [int(row[5:10].split('/')[0])]
 
         else:
-            # print(t1,t2+1,row[-6:])
-            my_r.append(float(row[-6:]))
-            epoch_row.append(int(row[5:10].split(':')[0]))
+            print('hi')
+            print(t1,t2,float(row[-20:].split('[')[0][-5:-1]))
+            my_r.append(float(row[-20:].split('[')[0][-5:-1]))
+            print(my_r)
+            epoch_row.append(int(row[5:10].split('/')[0]))
     elif not marked:
         if(t1==1):
             without_dbat.append(my_r)
@@ -65,9 +70,9 @@ for row in data:
         t1=2
     
 
-# print(with_dbat)
-# print('#######3')
-# print(without_dbat)
+print(with_dbat)
+print('#######3')
+print(without_dbat)
 
 
 with_dbat = np.array(with_dbat) # learning sequences of all 
@@ -93,7 +98,7 @@ plt.legend()
 plt.xlabel('epoch')
 plt.ylabel('accuracy')
 plt.title('Accuracy variation - averaged over all 5 models')
-plt.savefig(f'Plot-{fname}.png')
+plt.savefig(f'Plot-{fname}.pdf')
 
 # print(f'Accuracy of 5 ensembles without dbat: 0.555')
 # print(f'Accuracy of 5 ensembles with dbat: 0.556')
