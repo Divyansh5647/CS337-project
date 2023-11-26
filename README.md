@@ -22,6 +22,13 @@ We demonstrated that using Disagreement Learning can improve the diversity of th
 
 ## How to run code
 
+For 3 - Added script test_num_classes.ipynb
+
+
+
+
+
+
 ## References
 
 [Docs](https://docs.google.com/document/d/1haGnOLEIGB9FBDRNcDlD97-WADgQ26CzZdLJveqQoCI/edit)
