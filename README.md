@@ -26,4 +26,4 @@ We demonstrated that using Disagreement Learning can improve the diversity of th
 
 [Docs](https://docs.google.com/document/d/1haGnOLEIGB9FBDRNcDlD97-WADgQ26CzZdLJveqQoCI/edit)
 [Agree-to-Disagree](https://openreview.net/pdf?id=K7CbYQbyYhY)
-
+[Model](https://drive.google.com/file/d/18t0W_N0MLVU26jibg0eeOXUPKD1TaP7A/view)
