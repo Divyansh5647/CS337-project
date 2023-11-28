@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-fname = 'o5'
+fname = 'results/ensemble_size_5'
 f = open(f'{fname}.txt','r')
 data = f.read().split('\n')[9:]
 
@@ -93,7 +93,7 @@ plt.legend()
 plt.xlabel('epoch')
 plt.ylabel('accuracy')
 plt.title('Accuracy variation - averaged over all 5 models')
-plt.savefig(f'Plot-{fname}.png')
+plt.savefig(f'Plot-{fname.split("/")[-1]}.png')
 
 # print(f'Accuracy of 5 ensembles without dbat: 0.555')
 # print(f'Accuracy of 5 ensembles with dbat: 0.556')

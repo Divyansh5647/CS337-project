@@ -11,7 +11,7 @@ plt.plot(x_axis, without_dbat, label = 'without dbat')
 plt.plot(x_axis, with_dbat, label = 'with dbat')
 
 plt.legend()
-plt.xticks([2,5,10,20,50])  
+plt.xticks([2,5,10,20,50])
 
 plt.xlabel('Number of Classes')
 plt.ylabel('Accuracy')
