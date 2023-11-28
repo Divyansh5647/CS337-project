@@ -12,12 +12,12 @@ with_dbat3 = np.array([0.834, 0.845, 0.848, 0.850, 0.848])
 
 x_axis = [1, 2, 3, 4, 5]
 
-plt.plot(x_axis, without_dbat1, label = 'without dbat1', c=(0.8,0.1,0.1))
-plt.plot(x_axis, with_dbat1, label = 'with dbat1', c=(0.1,0.1,0.8))
+plt.plot(x_axis, without_dbat1, label = 'without dbat1', c=(0.9,0.1,0.1))
+plt.plot(x_axis, with_dbat1, label = 'with dbat1', c=(0.1,0.1,0.9))
 plt.plot(x_axis, without_dbat2, label = 'without dbat2', c=(0.6,0.1,0.1))
 plt.plot(x_axis, with_dbat2, label = 'with dbat2', c=(0.1,0.1,0.6))
-plt.plot(x_axis, without_dbat3, label = 'without dbat3', c=(0.4,0.1,0.1))
-plt.plot(x_axis, with_dbat3, label = 'with dbat3', c=(0.1,0.1,0.4))
+plt.plot(x_axis, without_dbat3, label = 'without dbat3', c=(0.3,0.1,0.1))
+plt.plot(x_axis, with_dbat3, label = 'with dbat3', c=(0.1,0.1,0.3))
 
 
 plt.legend()

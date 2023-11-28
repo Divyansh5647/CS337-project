@@ -222,9 +222,9 @@ without_epochs3 = np.array(without_epochs)
 
 
 # print(without_dbat.shape)
-plt.plot(np.mean(with_epochs1, axis=0)[1:],np.mean(with_dbat1, axis=0)[1:], label='with dbat1')
-plt.plot(np.mean(with_epochs2, axis=0)[1:],np.mean(with_dbat2, axis=0)[1:], label='with dbat2')
-plt.plot(np.mean(with_epochs3, axis=0)[1:],np.mean(with_dbat3, axis=0)[1:], label='with dbat3')
+plt.plot(np.mean(with_epochs1, axis=0)[1:],np.mean(with_dbat1, axis=0)[1:], label='with dbat1', c=(0.1,0.1,0.9))
+plt.plot(np.mean(with_epochs2, axis=0)[1:],np.mean(with_dbat2, axis=0)[1:], label='with dbat2', c=(0.1,0.1,0.6))
+plt.plot(np.mean(with_epochs3, axis=0)[1:],np.mean(with_dbat3, axis=0)[1:], label='with dbat3', c=(0.1,0.1,0.3))
 
 # plt.plot(with_dbat[1], label='2')
 # plt.plot(with_dbat[2], label='3')
@@ -232,9 +232,9 @@ plt.plot(np.mean(with_epochs3, axis=0)[1:],np.mean(with_dbat3, axis=0)[1:], labe
 # plt.plot(with_dbat[4], label='5')
 # plt.legend()
 
-plt.plot(np.mean(without_epochs1, axis=0)[1:],np.mean(without_dbat1, axis=0)[1:], label='without dbat1')
-plt.plot(np.mean(without_epochs2, axis=0)[1:],np.mean(without_dbat2, axis=0)[1:], label='without dbat2')
-plt.plot(np.mean(without_epochs3, axis=0)[1:],np.mean(without_dbat3, axis=0)[1:], label='without dbat3')
+plt.plot(np.mean(without_epochs1, axis=0)[1:],np.mean(without_dbat1, axis=0)[1:], label='without dbat1', c=(0.9,0.1,0.1))
+plt.plot(np.mean(without_epochs2, axis=0)[1:],np.mean(without_dbat2, axis=0)[1:], label='without dbat2', c=(0.6,0.1,0.1))
+plt.plot(np.mean(without_epochs3, axis=0)[1:],np.mean(without_dbat3, axis=0)[1:], label='without dbat3', c=(0.3,0.1,0.1))
 
 # plt.plot(without_dbat[1], label='2o')
 # plt.plot(without_dbat[2], label='3o')
@@ -242,7 +242,7 @@ plt.plot(np.mean(without_epochs3, axis=0)[1:],np.mean(without_dbat3, axis=0)[1:]
 # plt.plot(without_dbat[4], label='5o')
 plt.legend()
 plt.xlabel('epoch')
-plt.ylabel('accuracy')
+plt.ylabel('Accuracy')
 plt.title('Accuracy variation - averaged over all 5 models')
 plt.savefig(f'Plot-{fname.split("/")[-1]}.png')
 
