@@ -1,0 +1,131 @@
+Loading dataset 'waterbird'
+Train dataset length: 4795
+Valid dataset length: 1199
+Test dataset length: 5794
+Perturbations dataset length: 1199
+
+Training 
+{'ensemble_size': 4, 'batch_size_train': 128, 'batch_size_eval': 512, 'seed': 2, 'device': device(type='cuda', index=0), 'epochs': 300, 'lr': 0.001, 'l2_reg': 0.0001, 'scheduler': 'none', 'opt': 'sgd', 'eval_freq': 1000, 'ckpt_freq': 1, 'results_base_folder': './exps', 'no_diversity': True, 'dbat_loss_type': 'v1', 'perturb_type': 'ood_is_test', 'alpha': 0.0, 'model': 'resnet18', 'dataset': 'waterbird'}
+
+[m1] 0:0 [train] erm-loss: 0.886, adv-loss: 0.000 [valid] acc: 0.325 
+[m1] 26:1000 [train] erm-loss: 0.003, adv-loss: 0.000 [valid] acc: 0.816 
+[m1] 52:2000 [train] erm-loss: 0.001, adv-loss: 0.000 [valid] acc: 0.823 
+[m1] 78:3000 [train] erm-loss: 0.001, adv-loss: 0.000 [valid] acc: 0.825 
+[m1] 105:4000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.824 
+[m1] 131:5000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.826 
+[m1] 157:6000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.827 
+[m1] 184:7000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.833 
+[m1] 210:8000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.828 
+[m1] 236:9000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.833 
+[m1] 263:10000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.818 
+[m1] 289:11000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.839 
+[m2] 0:0 [train] erm-loss: 1.221, adv-loss: 0.000 [valid] acc: 0.255 
+[m2] 26:1000 [train] erm-loss: 0.003, adv-loss: 0.000 [valid] acc: 0.811 
+[m2] 52:2000 [train] erm-loss: 0.001, adv-loss: 0.000 [valid] acc: 0.819 
+[m2] 78:3000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.817 
+[m2] 105:4000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.822 
+[m2] 131:5000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.820 
+[m2] 157:6000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.828 
+[m2] 184:7000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.822 
+[m2] 210:8000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.823 
+[m2] 236:9000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.826 
+[m2] 263:10000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.827 
+[m2] 289:11000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.827 
+[m3] 0:0 [train] erm-loss: 0.687, adv-loss: 0.000 [valid] acc: 0.702 
+[m3] 26:1000 [train] erm-loss: 0.002, adv-loss: 0.000 [valid] acc: 0.816 
+[m3] 52:2000 [train] erm-loss: 0.001, adv-loss: 0.000 [valid] acc: 0.824 
+[m3] 78:3000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.824 
+[m3] 105:4000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.826 
+[m3] 131:5000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.830 
+[m3] 157:6000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.834 
+[m3] 184:7000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.825 
+[m3] 210:8000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.832 
+[m3] 236:9000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.832 
+[m3] 263:10000 [train] erm-loss: 0.001, adv-loss: 0.000 [valid] acc: 0.830 
+[m3] 289:11000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.829 
+[m4] 0:0 [train] erm-loss: 0.739, adv-loss: 0.000 [valid] acc: 0.523 
+[m4] 26:1000 [train] erm-loss: 0.002, adv-loss: 0.000 [valid] acc: 0.816 
+[m4] 52:2000 [train] erm-loss: 0.001, adv-loss: 0.000 [valid] acc: 0.827 
+[m4] 78:3000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.818 
+[m4] 105:4000 [train] erm-loss: 0.001, adv-loss: 0.000 [valid] acc: 0.819 
+[m4] 131:5000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.817 
+[m4] 157:6000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.822 
+[m4] 184:7000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.821 
+[m4] 210:8000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.823 
+[m4] 236:9000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.819 
+[m4] 263:10000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.826 
+[m4] 289:11000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.820 
+[test m1] test-acc: 0.851
+[test m2] test-acc: 0.838
+[test m3] test-acc: 0.836
+[test m4] test-acc: 0.830
+[test (last iterates ensemble)] test-acc: 0.837
+[test ensemble given size] 0.851, 0.845, 0.842, 0.837
+Loading dataset 'waterbird'
+Train dataset length: 4795
+Valid dataset length: 1199
+Test dataset length: 5794
+Perturbations dataset length: 1199
+
+Training 
+{'ensemble_size': 4, 'batch_size_train': 128, 'batch_size_eval': 512, 'seed': 2, 'device': device(type='cuda', index=0), 'epochs': 300, 'lr': 0.001, 'l2_reg': 0.0001, 'scheduler': 'none', 'opt': 'sgd', 'eval_freq': 1000, 'ckpt_freq': 1, 'results_base_folder': './exps', 'no_diversity': False, 'dbat_loss_type': 'v1', 'perturb_type': 'ood_is_test', 'alpha': 0.0001, 'model': 'resnet18', 'dataset': 'waterbird'}
+
+[m1] 0:0 [train] erm-loss: 0.886, adv-loss: 0.000 [valid] acc: 0.325 
+[m1] 26:1000 [train] erm-loss: 0.003, adv-loss: 0.000 [valid] acc: 0.816 
+[m1] 52:2000 [train] erm-loss: 0.001, adv-loss: 0.000 [valid] acc: 0.822 
+[m1] 78:3000 [train] erm-loss: 0.001, adv-loss: 0.000 [valid] acc: 0.825 
+[m1] 105:4000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.824 
+[m1] 131:5000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.826 
+[m1] 157:6000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.827 
+[m1] 184:7000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.833 
+[m1] 210:8000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.828 
+[m1] 236:9000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.833 
+[m1] 263:10000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.818 
+[m1] 289:11000 [train] erm-loss: 0.000, adv-loss: 0.000 [valid] acc: 0.839 
+[m2] 0:0 [train] erm-loss: 1.221, adv-loss: 0.534 [valid] acc: 0.255 
+[m2] 26:1000 [train] erm-loss: 0.003, adv-loss: 6.691 [valid] acc: 0.834 
+[m2] 52:2000 [train] erm-loss: 0.001, adv-loss: 7.097 [valid] acc: 0.838 
+[m2] 78:3000 [train] erm-loss: 0.000, adv-loss: 7.600 [valid] acc: 0.840 
+[m2] 105:4000 [train] erm-loss: 0.000, adv-loss: 8.338 [valid] acc: 0.837 
+[m2] 131:5000 [train] erm-loss: 0.000, adv-loss: 8.056 [valid] acc: 0.837 
+[m2] 157:6000 [train] erm-loss: 0.000, adv-loss: 7.793 [valid] acc: 0.842 
+[m2] 184:7000 [train] erm-loss: 0.000, adv-loss: 7.580 [valid] acc: 0.842 
+[m2] 210:8000 [train] erm-loss: 0.000, adv-loss: 7.610 [valid] acc: 0.839 
+[m2] 236:9000 [train] erm-loss: 0.000, adv-loss: 8.062 [valid] acc: 0.842 
+[m2] 263:10000 [train] erm-loss: 0.000, adv-loss: 7.660 [valid] acc: 0.841 
+[m2] 289:11000 [train] erm-loss: 0.000, adv-loss: 8.131 [valid] acc: 0.847 
+[m3] 0:0 [train] erm-loss: 0.687, adv-loss: 0.816 [valid] acc: 0.697 
+[m3] 26:1000 [train] erm-loss: 0.002, adv-loss: 6.408 [valid] acc: 0.833 
+[m3] 52:2000 [train] erm-loss: 0.001, adv-loss: 7.589 [valid] acc: 0.843 
+[m3] 78:3000 [train] erm-loss: 0.000, adv-loss: 7.107 [valid] acc: 0.841 
+[m3] 105:4000 [train] erm-loss: 0.000, adv-loss: 7.940 [valid] acc: 0.837 
+[m3] 131:5000 [train] erm-loss: 0.000, adv-loss: 8.460 [valid] acc: 0.842 
+[m3] 157:6000 [train] erm-loss: 0.000, adv-loss: 7.453 [valid] acc: 0.843 
+[m3] 184:7000 [train] erm-loss: 0.000, adv-loss: 8.049 [valid] acc: 0.840 
+[m3] 210:8000 [train] erm-loss: 0.000, adv-loss: 7.835 [valid] acc: 0.842 
+[m3] 236:9000 [train] erm-loss: 0.000, adv-loss: 7.815 [valid] acc: 0.842 
+[m3] 263:10000 [train] erm-loss: 0.001, adv-loss: 7.658 [valid] acc: 0.837 
+[m3] 289:11000 [train] erm-loss: 0.000, adv-loss: 8.210 [valid] acc: 0.840 
+[m4] 0:0 [train] erm-loss: 0.739, adv-loss: 0.708 [valid] acc: 0.527 
+[m4] 26:1000 [train] erm-loss: 0.002, adv-loss: 6.084 [valid] acc: 0.836 
+[m4] 52:2000 [train] erm-loss: 0.001, adv-loss: 7.720 [valid] acc: 0.847 
+[m4] 78:3000 [train] erm-loss: 0.001, adv-loss: 7.096 [valid] acc: 0.837 
+[m4] 105:4000 [train] erm-loss: 0.001, adv-loss: 7.765 [valid] acc: 0.836 
+[m4] 131:5000 [train] erm-loss: 0.000, adv-loss: 8.234 [valid] acc: 0.834 
+[m4] 157:6000 [train] erm-loss: 0.000, adv-loss: 8.002 [valid] acc: 0.837 
+[m4] 184:7000 [train] erm-loss: 0.000, adv-loss: 8.106 [valid] acc: 0.832 
+[m4] 210:8000 [train] erm-loss: 0.000, adv-loss: 8.028 [valid] acc: 0.843 
+[m4] 236:9000 [train] erm-loss: 0.000, adv-loss: 6.849 [valid] acc: 0.832 
+[m4] 263:10000 [train] erm-loss: 0.000, adv-loss: 7.840 [valid] acc: 0.845 
+[m4] 289:11000 [train] erm-loss: 0.000, adv-loss: 7.951 [valid] acc: 0.835 
+[test m1] test-acc: 0.851
+[test m2] test-acc: 0.853
+[test m3] test-acc: 0.848
+[test m4] test-acc: 0.845
+[test (last iterates ensemble)] test-acc: 0.850
+[test ensemble given size] 0.851, 0.852, 0.849, 0.850
+
+
+
+
+
