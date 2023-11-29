@@ -37,11 +37,20 @@ You will mostly need only the standard Machine Learning Packages, along with the
 A requirements.txt has been provided, containing all of our versions.
 
 
+## Code credits
+
+Codes for domino are written by us and the new loss function is also designed by us.
+
+The codes for ensemble size testing and number of classes have been taken from the official repository of Agree-to-Disagree but have undergone significant alteration.
+
+Codes for waterbird and office-home are taken directly from the Agree-to-Disagree github repo and we have only changed the model to perform our testing.
 
 
 ## References
 
 [Agree-to-Disagree](https://openreview.net/pdf?id=K7CbYQbyYhY)
+
+[Agree-to-Disagree-Github](https://github.com/mpagli/Agree-to-Disagree)
 
 [Model](https://drive.google.com/file/d/18t0W_N0MLVU26jibg0eeOXUPKD1TaP7A/view)
 
