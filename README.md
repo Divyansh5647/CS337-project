@@ -56,4 +56,4 @@ Codes for waterbird and office-home are taken directly from the Agree-to-Disagre
 
 [Presentation](https://docs.google.com/presentation/d/1Me-VbeTc64zNqFGPmz2Rw9wZ82AhXt5pix_1RYk4w5c/edit#slide=id.p)
 
-[Overleaf](https://www.overleaf.com/project/6564447a9351db5caa642559) (**PDF LINK डालनी है**)
+[Report](https://drive.google.com/file/d/1LsH3QT2w8kBfmsnbiWbt0M5u389gBS-K/view?usp=sharing)
