@@ -21,7 +21,8 @@ We demonstrated that using Disagreement Learning can improve the diversity of th
 
 
 ## How to run code
-For Hypothesis 1 - Run domino.ipynb
+For Hypothesis 1 - Run Domino/domino.ipynb
+
 For Hypothesis 3 - Added script test_num_classes.ipynb
 
 
