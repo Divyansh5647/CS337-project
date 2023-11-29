@@ -21,9 +21,10 @@ We demonstrated that using Disagreement Learning can improve the diversity of th
 
 
 ## How to run code
-For Hypothesis 1 - Run Domino/domino.ipynb
-
-For Hypothesis 3 - Added script test_num_classes.ipynb
+1. Hypothesis 1 - Run ``Domino/domino.ipynb``
+2. Hypothesis 2 - Run ``num_classes_cifar/test_num_classses.ipynb``
+3. Hypothesis 3 - To run on waterbird dataset, run ``waterbird_single_run/train-waterbird_4.sh`` or ``waterbird_single_run/train-waterbird_5.sh``; To run on CIFAR, run ``num_ensembles_cifar/test_num_ensembles.ipynb``
+4. Run ``office_home/train-office-home-ood_is_test.sh`` and ``office_home/train-office-home-ood_is_not_test.sh`` to run DBAT on Office-Home dataset
 
 
 
