@@ -7,6 +7,7 @@ Team SaNGiT
 - Atharva Abhijit Tambat
 - Divyansh Singhal
 
+![spurious_feature](images/SpuriousFeature.png)
 ## Overview
 
 We demonstrated that using Disagreement Learning can improve the diversity of the various models trained and hence encourages better generalization for the ensemble. This also ensures that the model does not make costly mistakes when it is unsure and decreases the confidence on predicting images it isn't supposed to predict. Disagreement learning also helps counter simplicity bias
