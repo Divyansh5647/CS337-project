@@ -22,7 +22,7 @@ We demonstrated that using Disagreement Learning can improve the diversity of th
 
 ## How to run code
 1. Hypothesis 1 - Look at ``Domino/domino.ipynb``
-2. Hypothesis 2 - Look at ``num_classes_cifar/test_num_classses.ipynb`` for the old loss function and ``num_classes_cifar/test_num_classes_new_loss.ipynb`` for the new loss function.
+2. Hypothesis 2 - Look at ``num_classes_cifar/test_num_classes.ipynb`` for the old loss function and ``num_classes_cifar/test_num_classes_new_loss.ipynb`` for the new loss function.
 3. Hypothesis 3 - To run on waterbird dataset, run ``waterbird_single_run/train-waterbird_4.sh`` or ``waterbird_single_run/train-waterbird_5.sh``. Note that these runs will access scripts from the src folder and their output will need to be piped to a file. The waterbird dataset will have to be separately installed and kept in the waterbird_single_run/datasets folder to run these. Checkout the waterbird_single_run/datasets to see how to download those.;
 
 To run on CIFAR, run ``num_ensembles_cifar/test_num_ensembles.ipynb``
