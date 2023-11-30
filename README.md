@@ -13,22 +13,22 @@ We demonstrated that using Disagreement Learning can improve the diversity of th
 
 ## Our Tasks
 
-1. Hypothesis 1 - We want to demonstrate that using the disagreement loss causes the model to learner harder features compared to just the cross-entropy loss. This makes the model more generalizable.
-2. Hypothesis 2 - We wish to analyse how the number of classes in a classification task affects the ability of the disagreement loss to improve upon standard ensembling and whether we can design a new loss function on the same principles to mitigate that effect.
-3. Hypothesis 3 - We wish to show that the accuracy improves with the number of models in the DBAT loss. I.E ensembling over more models, trained to disagree is better for accuracy.
+1. **Hypothesis 1** - We want to demonstrate that using the disagreement loss causes the model to learner harder features compared to just the cross-entropy loss. This makes the model more generalizable.
+2. **Hypothesis 2** - We wish to analyse how the number of classes in a classification task affects the ability of the disagreement loss to improve upon standard ensembling and whether we can design a new loss function on the same principles to mitigate that effect.
+3. **Hypothesis 3** - We wish to show that the accuracy improves with the number of models in the DBAT loss i.e. ensembling over more models, trained to disagree is better for accuracy.
 4. We demostrated the results of the paper with smaller models and analysed how the results changed from what they reported
 
 
 
 ## How to run code
-1. Hypothesis 1 - Look at ``Domino/domino.ipynb``
-2. Hypothesis 2 - Look at ``num_classes_cifar/test_num_classes.ipynb`` for the old loss function and ``num_classes_cifar/test_num_classes_new_loss.ipynb`` for the new loss function.
-3. Hypothesis 3 - To run on waterbird dataset, run ``waterbird_single_run/train-waterbird_4.sh`` or ``waterbird_single_run/train-waterbird_5.sh``. Note that these runs will access scripts from the src folder and their output will need to be piped to a file. The waterbird dataset will have to be separately installed and kept in the waterbird_single_run/datasets folder to run these. Checkout the waterbird_single_run/datasets to see how to download those.;
+1. **Hypothesis 1** - Look at ``Domino/domino.ipynb``
+2.**Hypothesis 2** - Look at ``num_classes_cifar/test_num_classes.ipynb`` for the old loss function and ``num_classes_cifar/test_num_classes_new_loss.ipynb`` for the new loss function. For extra runs with different random seeds, look at ``num_classes_cifar/runs`` for runs with old loss function and ``num_classes_cifar/runs_newloss`` for runs with the new loss function.
+3. **Hypothesis 3** - To run on waterbird dataset, run ``waterbird_single_run/train-waterbird_4.sh`` or ``waterbird_single_run/train-waterbird_5.sh``. Note that these runs will access scripts from the src folder and their output will need to be piped to a file. The waterbird dataset will have to be separately installed and kept in the ``waterbird_single_run/datasets`` folder to run these. Checkout the ``waterbird_single_run/datasets`` to see how to download those.
 
 To run on CIFAR, run ``num_ensembles_cifar/test_num_ensembles.ipynb``
 
 4. Run ``office_home/train-office-home-ood_is_test.sh`` and ``office_home/train-office-home-ood_is_not_test.sh`` to run DBAT vs non-DBAT on Office-Home dataset.
-Note that these runs will access scripts from the src folder and their output will need to be piped to a file. The dataset will have to be separately installed and kept in the office_home/datasets folder to run these. Checkout the office_home/datasets to see how to download those.;
+Note that these runs will access scripts from the src folder and their output will need to be piped to a file. The dataset will have to be separately installed and kept in the ``office_home/datasets`` folder to run these. Checkout the ``office_home/datasets`` to see how to download those.
 
 ## Requirements
 
