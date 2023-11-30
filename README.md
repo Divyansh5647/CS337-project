@@ -46,14 +46,16 @@ The codes for ensemble size testing and number of classes have been taken from t
 Codes for waterbird and office-home are taken directly from the Agree-to-Disagree github repo and we have only changed the model to perform our testing.
 
 
-## References
-
-[Agree-to-Disagree](https://openreview.net/pdf?id=K7CbYQbyYhY)
-
-[Agree-to-Disagree-Github](https://github.com/mpagli/Agree-to-Disagree)
-
-[Model](https://drive.google.com/file/d/18t0W_N0MLVU26jibg0eeOXUPKD1TaP7A/view)
+## Presentation
 
 [Presentation](https://docs.google.com/presentation/d/1Me-VbeTc64zNqFGPmz2Rw9wZ82AhXt5pix_1RYk4w5c/edit#slide=id.p)
 
+## Report
+
 [Report](https://drive.google.com/file/d/1LsH3QT2w8kBfmsnbiWbt0M5u389gBS-K/view?usp=sharing)
+
+## References
+
+[Agree-to-Disagree - Original paper](https://openreview.net/pdf?id=K7CbYQbyYhY)
+
+[Agree-to-Disagree-Github](https://github.com/mpagli/Agree-to-Disagree)
